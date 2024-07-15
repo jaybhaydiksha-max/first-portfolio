@@ -1,0 +1,167 @@
+body {
+    background-color: rgb(5, 5, 44);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 65px;
+    background-color: rgb(16, 16, 90);
+}
+
+.right {
+    list-style-type: none;
+    display: flex;
+}
+
+.right li {
+    margin: 20px;
+    font-size: 16px;
+}
+
+.left {
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.section {
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 23px 0;
+}
+
+.section>div {
+    width: 30%;
+}
+
+.r1 img {
+    width: 350px;
+    margin: 50px 0;
+}
+
+.l1 {
+    font-size: 3rem;
+    margin: 30px 0;
+}
+
+.purple {
+    color: rgb(64, 20, 105)
+}
+
+.right a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: brown;
+}
+
+a:visited {
+    color: cadetblue;
+}
+
+#element {
+    color: rgb(70, 18, 119)
+}
+
+.second {
+    max-width: 80vw;
+    margin: auto;
+    color: white;
+    height: 80vh;
+}
+
+main hr {
+    border: 0;
+    background-color: rgb(81, 81, 133);
+    height: 1.2px;
+    margin: 40px 84px;
+}
+
+.second .grey {
+    color: rgb(174, 145, 145);
+    margin: 50px;
+}
+
+.second h1 {
+    margin: 10px 0;
+    color: white;
+    margin-left: 50px;
+}
+
+.second .box {
+    border: 0;
+    background-color: white;
+    height: 2px;
+    margin: 60px 0;
+    display: flex;
+}
+
+.second .vertical {
+    height: 93px;
+    width: 1px;
+    background-color: white;
+    margin: 0 140px;
+
+}
+.image-top{
+    width: 23px;
+    position:relative;
+    top: -32px;
+    left:-9px
+}
+.vertical-title{
+       position: relative;
+       top:75%;
+       width: 150px;
+}
+.vertical-desc{
+     position: relative;
+     top:86px;
+     color: darkgray;
+     width: 150px;
+     font-size: 12px;
+}
+footer{
+    background-color: rgb(41, 14, 66);
+    color: white;
+    height: 233px;
+}
+.flex{
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    padding: 23px 122px;
+}
+footer ul{
+    list-style-type: none;
+}
+.flex>div{
+    width: 223px;
+}
+.text-centre{
+    text-align: center;
+    color: darkgrey;
+    padding: 12px 0;
+}
+.l1 .button{
+    padding: 10px;
+    background-color: rgb(37, 12, 61);
+    color: white;
+    border: 2px solid white;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.l1 .buttons{
+    padding: 30px;
+}
