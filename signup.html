@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - DataStars</title>
+  <style>
+    /* Style for the Sign Up Page */
+body {
+    font-family: Arial, sans-serif;
+    background: url(img2.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .signup-container {
+    border: 1px solid #ddd;
+    color: #727070; 
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .head {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .head h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .head h2 {
+    font-size: 1.2rem;
+    color: #777;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #9d4908;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #df8d08;
+  }
+  
+  p {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <div class="head">
+      <h1>Create an Account</h1>
+      <h2>Join DataStars and Start Exploring!</h2>
+    </div>
+    <form id="signup-form">
+      <!-- Name Input -->
+      <div class="input-group">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Full Name"
+          required
+        />
+      </div>
+
+      <!-- Email Input -->
+      <div class="input-group">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+      </div>
+
+      <!-- Phone Number Input -->
+      <div class="input-group">
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Phone Number"
+          required
+        />
+      </div>
+
+      <!-- Password Input -->
+      <div class="input-group">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+      </div>
+
+      <!-- Confirm Password Input -->
+      <div class="input-group">
+        <input
+          type="password"
+          id="confirm-password"
+          name="confirm-password"
+          placeholder="Confirm Password"
+          required
+        />
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>
+      Already have an account? <a href="login.html">Login</a>
+    </p>
+  </div>
+
+ 
+</body>
+</html>

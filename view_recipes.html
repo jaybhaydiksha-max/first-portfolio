@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Recipes - Mumma's Recipes</title>
+  <style>
+    body {
+      background: url('img3.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+    }
+    
+    nav .left .head {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }
+    
+    nav ul {
+      list-style-type: none;
+      display: flex;
+      gap: 20px;
+    }
+    
+    nav ul li a {
+      text-decoration: none;
+      color: azure;
+      font-size: 18px;
+      padding: 8px;
+      border-radius: 5px;
+      transition: color 0.3s, transform 0.3s;
+    }
+    
+    nav ul li a:hover {
+      color: #111;
+      background-color: lavenderblush;
+      transform: translateY(-5px);
+    }
+
+    /* Search Bar Styles */
+    .search-container {
+      text-align: center;
+      margin: 100px auto 20px;
+      max-width: 800px;
+      padding: 15px;
+    }
+
+    .search-container input {
+      padding: 12px;
+      font-size: 16px;
+      width: 100%;
+      max-width: 80%;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Recipe List Styles */
+    .recipe-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 20px;
+    }
+
+    .recipe-item {
+      width: 280px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .recipe-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .recipe-item h3 {
+      font-size: 1.2rem;
+      color: #111;
+      margin-bottom: 10px;
+    }
+
+    .recipe-item p {
+      color: #111;
+      margin-bottom: 10px;
+    }
+
+    .recipe-item img {
+      max-width: 100%;
+      max-height: 200px;
+      margin-top: 10px;
+    }
+
+    /* Mobile Responsiveness */
+    @media screen and (max-width: 768px) {
+      nav ul {
+        gap: 15px;
+      }
+
+      .recipe-list {
+        padding: 15px;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .recipe-item {
+        width: 90%;
+      }
+
+      .search-container input {
+        width: 90%;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      nav .left .head {
+        font-size: 20px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .recipe-item {
+        width: 100%;
+      }
+
+      .search-container input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="left">
+      <div class="head">Mumma's Recipe</div>
+    </div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="add_recipe.html">Add Recipe</a></li>
+      <li><a href="view_recipes.html">View Recipes</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search recipes by name or ingredients" oninput="searchRecipes()">
+  </div>
+
+  <!-- Recipe List Section -->
+  <div class="recipe-list" id="recipe-list">
+    <!-- Recipes will be displayed here -->
+  </div>
+  <button onclick="window.location.href='add_recipe.html'">Add New Recipe</button>
+  <script>
+    // Function to load all recipes from localStorage and display them
+    function loadRecipes() {
+      const recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+      const recipeList = document.getElementById('recipe-list');
+      recipeList.innerHTML = ''; // Clear the list
+
+      recipes.forEach(recipe => {
+        const recipeItem = document.createElement('div');
+        recipeItem.classList.add('recipe-item');
+        recipeItem.onclick = () => showRecipeDetails(recipe); // On click, show details
+
+        const recipeName = document.createElement('h3');
+        recipeName.textContent = recipe.name;
+        recipeItem.appendChild(recipeName);
+
+        const recipeIngredients = document.createElement('p');
+        recipeIngredients.textContent = 'Ingredients: ' + recipe.ingredients;
+        recipeItem.appendChild(recipeIngredients);
+
+        if (recipe.images.length > 0) {
+          const recipeImage = document.createElement('img');
+          recipeImage.src = recipe.images[0]; // Display first image
+          recipeItem.appendChild(recipeImage);
+        }
+
+        recipeList.appendChild(recipeItem);
+      });
+    }
+
+    // Function to search recipes based on the input query
+    function searchRecipes() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+      const filteredRecipes = recipes.filter(recipe => 
+        recipe.name.toLowerCase().includes(query) ||
+        recipe.ingredients.toLowerCase().includes(query)
+      );
+      
+      displayRecipes(filteredRecipes);
+    }
+
+    // Function to display filtered or all recipes
+    function displayRecipes(recipes) {
+      const recipeList = document.getElementById('recipe-list');
+      recipeList.innerHTML = ''; // Clear the list
+      
+      recipes.forEach(recipe => {
+        const recipeItem = document.createElement('div');
+        recipeItem.classList.add('recipe-item');
+        recipeItem.onclick = () => showRecipeDetails(recipe);
+
+        const recipeName = document.createElement('h3');
+        recipeName.textContent = recipe.name;
+        recipeItem.appendChild(recipeName);
+
+        const recipeIngredients = document.createElement('p');
+        recipeIngredients.textContent = 'Ingredients: ' + recipe.ingredients;
+        recipeItem.appendChild(recipeIngredients);
+
+        if (recipe.images.length > 0) {
+          const recipeImage = document.createElement('img');
+          recipeImage.src = recipe.images[0];
+          recipeItem.appendChild(recipeImage);
+        }
+
+        recipeList.appendChild(recipeItem);
+      });
+    }
+
+    // Function to show detailed view of the clicked recipe
+    function showRecipeDetails(recipe) {
+      localStorage.setItem('currentRecipe', JSON.stringify(recipe)); // Store the current recipe
+      window.location.href = 'recipe_detail.html'; // Redirect to the recipe detail page
+    }
+
+    // Load recipes on page load
+    window.onload = loadRecipes;
+     // Ensure user is logged in, otherwise redirect to login page
+     const loggedInUser = localStorage.getItem("loggedInUser");
+     if (!loggedInUser) {
+       window.location.href = "login.html";  // Redirect to login page
+     } else {
+       const user = JSON.parse(loggedInUser);
+       document.getElementById("user-name").textContent = user.email;  // Display user's email
+ 
+       // Display recipes (if any)
+       const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+       const recipeList = document.getElementById("recipe-list");
+ 
+       if (recipes.length === 0) {
+         recipeList.innerHTML = "<p>No recipes available.</p>";
+       } else {
+         recipes.forEach(recipe => {
+           const recipeDiv = document.createElement("div");
+           recipeDiv.innerHTML = `<h3>${recipe.name}</h3><p>${recipe.ingredients}</p>`;
+           recipeList.appendChild(recipeDiv);
+         });
+       }
+     }
+ 
+     function logout() {
+       localStorage.removeItem("loggedInUser");
+       window.location.href = "login.html";  // Redirect to login page
+     }
+  </script>
+
+</body>
+</html>

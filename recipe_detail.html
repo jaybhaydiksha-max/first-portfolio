@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Details - Mumma's Recipes</title>
+  <style>
+    body {
+      background: url('img3.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: rgb(0, 0, 0);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+    }
+    .recipe-container {
+      margin-top: 100px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      width: 80%;
+      margin: 0 auto;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    .recipe-container h1 {
+      margin-bottom: 20px;
+    }
+    .recipe-container p {
+      margin-bottom: 20px;
+    }
+    .recipe-container img {
+      max-width: 80%;
+      max-height: 400px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="recipe-container" id="recipe-details">
+    <!-- Recipe details will be displayed here -->
+  </div>
+
+  <script>
+    // Load and display the recipe details from localStorage
+    window.onload = function() {
+      const recipe = JSON.parse(localStorage.getItem('currentRecipe')) || {};
+      const recipeDetails = document.getElementById('recipe-details');
+
+      if (recipe) {
+        recipeDetails.innerHTML = `
+          <h1>${recipe.name}</h1>
+          <p><strong>Ingredients:</strong> ${recipe.ingredients}</p>
+          <p><strong>Preparation:</strong> ${recipe.preparation}</p>
+        `;
+        recipe.images.forEach(image => {
+          recipeDetails.innerHTML += `<img src="${image}" alt="Recipe image">`;
+        });
+      }
+    };
+  </script>
+
+</body>
+</html>
